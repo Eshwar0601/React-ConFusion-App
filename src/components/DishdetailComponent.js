@@ -82,14 +82,17 @@ class DishDetail extends Component {
   }
 
   render() {
-    const dish = this.props.selectedDishDetail;
-    const dishDetail = this.renderDish(dish);
-    const dishComments = this.renderComments(dish);
     console.log("DishDetail Component render is invoked");
     return (
-      <div className="row">
-        <div className="col-12 col-md-5 m-1">{dishDetail}</div>
-        <div className="col-12 col-md-5 m-1">{dishComments}</div>
+      <div className="container">
+        <div className="row">
+          <div className="col-12 col-md-5 m-1">
+            {this.renderDish(this.props.dish)}
+          </div>
+          <div className="col-12 col-md-5 m-1">
+            {this.renderComments(this.props.dish)}
+          </div>
+        </div>
       </div>
     );
   }
