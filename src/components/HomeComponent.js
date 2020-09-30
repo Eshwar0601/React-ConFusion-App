@@ -10,7 +10,7 @@ import {
 
 function RenderCard({ item }) {
   return (
-    <Card>
+    <Card className="card-level mt-4 mb-4">
       <CardImg src={item.image} alt={item.name} />
       <CardBody>
         <CardTitle>{item.name}</CardTitle>

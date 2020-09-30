@@ -70,3 +70,9 @@ address {
 .navbar-dark {
   background-color: #512da8;
 }
+
+@media screen and (min-width: 1000px) {
+  .card-level {
+    min-height: 627px;
+  }
+}
