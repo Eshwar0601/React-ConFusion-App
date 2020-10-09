@@ -37,8 +37,12 @@ export class CommentForm extends Component {
     });
   }
   handleSubmit(values) {
-    console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
+    this.props.addComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
   }
   render() {
     return (
@@ -70,14 +74,14 @@ export class CommentForm extends Component {
                 </Row>
                 <Row>
                   <Col md={3}>
-                    <Label htmlFor="name">Your Name</Label>
+                    <Label htmlFor="author">Your Name</Label>
                   </Col>
                   <Col md={9}>
                     <Control.text
-                      model=".name"
+                      model=".author"
                       className="form-control"
-                      id="name"
-                      name="name"
+                      id="author"
+                      name="author"
                       placeholder="Enter Your Name"
                       validators={{
                         required,
@@ -145,7 +149,7 @@ function RenderDish({ dish }) {
   }
 }
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, dishId }) {
   if (comments != null) {
     return (
       <div className="col-12 m-1">
@@ -166,7 +170,7 @@ function RenderComments({ comments }) {
             );
           })}
         </ul>
-        <CommentForm />
+        <CommentForm dishId={dishId} addComment={addComment} />
       </div>
     );
   }
@@ -191,7 +195,11 @@ const DishDetail = (props) => {
           <RenderDish dish={props.dish} />
         </div>
         <div className="col-12 col-md-5 m-1">
-          <RenderComments comments={props.comments} />
+          <RenderComments
+            comments={props.comments}
+            addComment={props.addComment}
+            dishId={props.dish.id}
+          />
         </div>
       </div>
     </div>
